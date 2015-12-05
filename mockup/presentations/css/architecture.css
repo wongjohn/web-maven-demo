@@ -1,0 +1,50 @@
+.architecture .tech-stack > div {font-size: 18px;}
+.architecture.reveal a.roll {vertical-align: middle;}
+.architecture .tech-stack .tech-stack-client,
+.architecture .tech-stack .tech-stack-server-rest,
+.architecture .tech-stack .tech-stack-server-hibernate {
+    border-bottom: solid 1px #aaa;
+    margin-bottom: -2px;
+    min-width: 770px;
+}
+.architecture .tech-stack .tech-stand {
+    display: inline-block;
+    width: 300px;
+    height: 80px;
+    line-height: 80px;
+    padding: 10px;
+}
+.architecture .tech-stack .tech-stand .stand {
+    display: inline-block;
+    width: 300px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: purple;
+}
+.architecture .tech-stack .tech-stack-server-rest .tech-stand .stand,
+.architecture .tech-stack .tech-stack-server-hibernate .tech-stand .stand {
+    background-color: #60944C;
+}
+.architecture .tech-stack .tech-stack-db .tech-stand .stand {
+    background-color: #2EAEB9;
+}
+.architecture .tech-stack .tech-used .stand {
+    display: inline-block;
+    width: 170px;
+    height: 80px;
+    line-height: 80px;
+    padding: 10px;
+}
+.architecture .tech-stack .tech-used, .architecture .tech-stack .tech-practise {
+    display: inline-block;
+    width: 270px;
+    height: 80px;
+    line-height: 80px;
+    padding: 10px;
+}
+.architecture .tech-stack .tech-practise {
+    border-left: solid 1px #aaa;
+}

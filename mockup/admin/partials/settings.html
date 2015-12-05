@@ -1,0 +1,74 @@
+<div class="settings">
+    <h2 class="app-title">
+        <span class="title-name">
+            <span class="name">设置</span>
+        </span>
+        <span class="title-description"><strong>设置我的信息</strong></span>
+    </h2>
+    <tabs>
+        <!-- 修改密码 -->
+        <pane heading="修改密码">
+            <header class="title">
+                <h3 class="title">修改密码</h3>
+                <p class="title-description"></p>
+            </header>
+
+            <form data-ng-submit="confirmChangePassword()" name="changePassword" class="span4 change-password-form form-horizontal" novalidate>
+                <div class="control-group">
+                    <p class="text-error pagination-centered" data-ng-show="!!errorMessage">{{errorMessage}}</p>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="old_password">旧密码</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-pencil"></i></span>
+                            <input placeholder="旧密码" class="span2" id="old_password" name="old_password" type="password" ng-model="changePasswordInfo.oldPassword" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="new_password">新密码</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-pencil"></i></span>
+                            <input placeholder="新密码" class="span2" id="new_password" name="new_password" type="password" ng-model="changePasswordInfo.newPassword" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="confirm_password">确认密码</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-pencil"></i></span>
+                            <input placeholder="确认密码" class="span2" id="confirm_password" name="confirm_password" type="password" ng-model="changePasswordInfo.confirmPassword" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button data-ng-disabled="changePassword.$invalid" class="btn span2 btn-primary btn-large" type="submit">确定</button>
+                    </div>
+                </div>
+            </form>
+        </pane>
+
+        <!-- 用户管理 -->
+        <pane heading="用户管理">
+            <header class="title">
+                <h3 class="title">用户管理</h3>
+                <p class="title-description"></p>
+            </header>
+
+        </pane>
+
+        <!-- 权限管理 -->
+        <pane heading="权限管理">
+            <header class="title">
+                <h3 class="title">权限管理</h3>
+                <p class="title-description"></p>
+            </header>
+
+        </pane>
+
+    </tabs>
+</div>

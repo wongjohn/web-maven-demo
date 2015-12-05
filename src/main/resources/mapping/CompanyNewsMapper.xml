@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aly.dao.CompanyNewsMapper" >
+  <resultMap id="BaseResultMap" type="com.aly.domain.CompanyNews" >
+    <id column="NEWS_ID" property="newsId" jdbcType="INTEGER" />
+    <result column="SHORTCUT" property="shortcut" jdbcType="VARCHAR" />
+    <result column="NEWS_TITLE" property="newsTitle" jdbcType="VARCHAR" />
+    <result column="NEWS_SOURCE" property="newsSource" jdbcType="VARCHAR" />
+    <result column="NEWS_AUTHOR" property="newsAuthor" jdbcType="VARCHAR" />
+    <result column="NEWS_CONTENT" property="newsContent" jdbcType="VARCHAR" />
+    <result column="NEWS_DATE" property="newsDate" jdbcType="DATE" />
+    <result column="PREVIOUS_ID" property="previousId" jdbcType="INTEGER" />
+    <result column="PREVIOUS_SHORTCUT" property="previousShortcut" jdbcType="VARCHAR" />
+    <result column="PREVIOUS_TITLE" property="previousTitle" jdbcType="VARCHAR" />
+    <result column="NEXT_ID" property="nextId" jdbcType="INTEGER" />
+    <result column="NEXT_SHORTCUT" property="nextShortcut" jdbcType="VARCHAR" />
+    <result column="NEXT_TITLE" property="nextTitle" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    NEWS_ID, SHORTCUT, NEWS_TITLE, NEWS_SOURCE, NEWS_AUTHOR, NEWS_CONTENT, NEWS_DATE, 
+    PREVIOUS_ID, PREVIOUS_SHORTCUT, PREVIOUS_TITLE, NEXT_ID, NEXT_SHORTCUT, NEXT_TITLE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COMPANY_NEWS
+    where NEWS_ID = #{newsId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByEmptyPreviousId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from COMPANY_NEWS
+    where PREVIOUS_ID IS NULL
+  </select>
+  <select id="getCompanyNewsByShortcut" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from COMPANY_NEWS
+    where SHORTCUT = #{shortcut,jdbcType=VARCHAR}
+  </select>
+  <select id="getAllCompanyNews" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from COMPANY_NEWS
+      order by NEWS_ID desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COMPANY_NEWS
+    where NEWS_ID = #{newsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aly.domain.CompanyNews" useGeneratedKeys="true" keyProperty="newsId">
+    insert into COMPANY_NEWS (NEWS_ID, SHORTCUT, NEWS_TITLE,
+      NEWS_SOURCE, NEWS_AUTHOR, NEWS_CONTENT, 
+      NEWS_DATE, PREVIOUS_ID, PREVIOUS_SHORTCUT, 
+      PREVIOUS_TITLE, NEXT_ID, NEXT_SHORTCUT, 
+      NEXT_TITLE)
+    values (#{newsId,jdbcType=INTEGER}, #{shortcut,jdbcType=VARCHAR}, #{newsTitle,jdbcType=VARCHAR}, 
+      #{newsSource,jdbcType=VARCHAR}, #{newsAuthor,jdbcType=VARCHAR}, #{newsContent,jdbcType=VARCHAR}, 
+      #{newsDate,jdbcType=DATE}, #{previousId,jdbcType=INTEGER}, #{previousShortcut,jdbcType=VARCHAR}, 
+      #{previousTitle,jdbcType=VARCHAR}, #{nextId,jdbcType=INTEGER}, #{nextShortcut,jdbcType=VARCHAR}, 
+      #{nextTitle,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aly.domain.CompanyNews" useGeneratedKeys="true" keyProperty="newsId">
+    insert into COMPANY_NEWS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        NEWS_ID,
+      </if>
+      <if test="shortcut != null" >
+        SHORTCUT,
+      </if>
+      <if test="newsTitle != null" >
+        NEWS_TITLE,
+      </if>
+      <if test="newsSource != null" >
+        NEWS_SOURCE,
+      </if>
+      <if test="newsAuthor != null" >
+        NEWS_AUTHOR,
+      </if>
+      <if test="newsContent != null" >
+        NEWS_CONTENT,
+      </if>
+      <if test="newsDate != null" >
+        NEWS_DATE,
+      </if>
+      <if test="previousId != null" >
+        PREVIOUS_ID,
+      </if>
+      <if test="previousShortcut != null" >
+        PREVIOUS_SHORTCUT,
+      </if>
+      <if test="previousTitle != null" >
+        PREVIOUS_TITLE,
+      </if>
+      <if test="nextId != null" >
+        NEXT_ID,
+      </if>
+      <if test="nextShortcut != null" >
+        NEXT_SHORTCUT,
+      </if>
+      <if test="nextTitle != null" >
+        NEXT_TITLE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="shortcut != null" >
+        #{shortcut,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTitle != null" >
+        #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsSource != null" >
+        #{newsSource,jdbcType=VARCHAR},
+      </if>
+      <if test="newsAuthor != null" >
+        #{newsAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="newsContent != null" >
+        #{newsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="newsDate != null" >
+        #{newsDate,jdbcType=DATE},
+      </if>
+      <if test="previousId != null" >
+        #{previousId,jdbcType=INTEGER},
+      </if>
+      <if test="previousShortcut != null" >
+        #{previousShortcut,jdbcType=VARCHAR},
+      </if>
+      <if test="previousTitle != null" >
+        #{previousTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="nextId != null" >
+        #{nextId,jdbcType=INTEGER},
+      </if>
+      <if test="nextShortcut != null" >
+        #{nextShortcut,jdbcType=VARCHAR},
+      </if>
+      <if test="nextTitle != null" >
+        #{nextTitle,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aly.domain.CompanyNews" >
+    update COMPANY_NEWS
+    <set >
+      <if test="shortcut != null" >
+        SHORTCUT = #{shortcut,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTitle != null" >
+        NEWS_TITLE = #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsSource != null" >
+        NEWS_SOURCE = #{newsSource,jdbcType=VARCHAR},
+      </if>
+      <if test="newsAuthor != null" >
+        NEWS_AUTHOR = #{newsAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="newsContent != null" >
+        NEWS_CONTENT = #{newsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="newsDate != null" >
+        NEWS_DATE = #{newsDate,jdbcType=DATE},
+      </if>
+      <if test="previousId != null" >
+        PREVIOUS_ID = #{previousId,jdbcType=INTEGER},
+      </if>
+      <if test="previousShortcut != null" >
+        PREVIOUS_SHORTCUT = #{previousShortcut,jdbcType=VARCHAR},
+      </if>
+      <if test="previousTitle != null" >
+        PREVIOUS_TITLE = #{previousTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="nextId != null" >
+        NEXT_ID = #{nextId,jdbcType=INTEGER},
+      </if>
+      <if test="nextShortcut != null" >
+        NEXT_SHORTCUT = #{nextShortcut,jdbcType=VARCHAR},
+      </if>
+      <if test="nextTitle != null" >
+        NEXT_TITLE = #{nextTitle,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where NEWS_ID = #{newsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aly.domain.CompanyNews" >
+    update COMPANY_NEWS
+    set SHORTCUT = #{shortcut,jdbcType=VARCHAR},
+      NEWS_TITLE = #{newsTitle,jdbcType=VARCHAR},
+      NEWS_SOURCE = #{newsSource,jdbcType=VARCHAR},
+      NEWS_AUTHOR = #{newsAuthor,jdbcType=VARCHAR},
+      NEWS_CONTENT = #{newsContent,jdbcType=VARCHAR},
+      NEWS_DATE = #{newsDate,jdbcType=DATE},
+      PREVIOUS_ID = #{previousId,jdbcType=INTEGER},
+      PREVIOUS_SHORTCUT = #{previousShortcut,jdbcType=VARCHAR},
+      PREVIOUS_TITLE = #{previousTitle,jdbcType=VARCHAR},
+      NEXT_ID = #{nextId,jdbcType=INTEGER},
+      NEXT_SHORTCUT = #{nextShortcut,jdbcType=VARCHAR},
+      NEXT_TITLE = #{nextTitle,jdbcType=VARCHAR}
+    where NEWS_ID = #{newsId,jdbcType=INTEGER}
+  </update>
+</mapper>

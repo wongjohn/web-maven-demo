@@ -1,0 +1,95 @@
+<div class="games">
+    <h2 class="app-title">
+        <span class="title-name">
+            <span class="name">旗下游戏</span>
+        </span>
+        <span class="title-description"><strong>“旗下游戏”页面中显示的内容，包括网络游戏、休闲游戏。</strong></span>
+    </h2>
+    <tabs>
+        <!-- 网络游戏 -->
+        <pane heading="网络游戏">
+            <header class="title">
+                <h3 class="title">网络游戏</h3>
+                <div class="operations">
+                    <button class="btn btn-primary btn-large" ng-click="createOnlineGame()">创建网络游戏</button>
+                </div>
+            </header>
+
+            <!-- 所有需要编辑的记录 -->
+            <accordion close-others="true">
+                <accordion-group ng-repeat="onlineGame in allOnlineGames" ng-class="{'selected' : selectedOnlineGame == onlineGame}" ng-click="selectCurrentOnlineGame(onlineGame)">
+                    <accordion-heading>
+                        <div class="btn-group">
+                            <a class="btn btn-primary">操作</a>
+                            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li ng-click="editCurrentOnlineGame(onlineGame, $event)"><a><i class="icon-pencil"></i> 编辑</a></li>
+                                <li ng-click="deleteCurrentOnlineGame(onlineGame, $event)"><a><i class="icon-trash"></i> 删除</a></li>
+                            </ul>
+                        </div>
+                        <span class="position"><strong>游戏名称：</strong>{{onlineGame.gameName}}</span>
+                        <span class="work-place"><strong>游戏简述：</strong>{{onlineGame.additionInfo}}</span>
+                        <span class="work-property"><strong>游戏官网：</strong>{{onlineGame.officialWebsiteUrl}}</span>
+                    </accordion-heading>
+                    <div class="online-game-info">
+                        <div class="game-info">
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <span><strong>游戏图标</strong>{{onlineGame.iconImageUrl}}</span>
+                                    <div><img ng-src="{{'../' + onlineGame.iconImageUrl}}"></div>
+                                </div>
+                                <div class="span6">
+                                    <span><strong>二维码</strong>{{onlineGame.erweimaImageUrl}}</span>
+                                    <div><img ng-src="{{'../' + onlineGame.erweimaImageUrl}}"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="description">
+                            <h3>游戏软文</h3>
+                            <div>{{onlineGame.description}}</div>
+                        </div>
+                    </div>
+                </accordion-group>
+            </accordion>
+        </pane>
+
+        <!-- 休闲游戏 -->
+        <pane heading="休闲游戏">
+            <header class="title">
+                <h3 class="title">休闲游戏</h3>
+                <div class="operations">
+                    <button class="btn btn-primary btn-large" ng-click="createCasualGame()">创建休闲游戏</button>
+                </div>
+            </header>
+
+            <!-- 所有需要编辑的记录 -->
+            <accordion close-others="true">
+                <accordion-group ng-repeat="casualGame in allCasualGames" ng-class="{'selected' : selectedCasualGame == casualGame}" ng-click="selectCurrentCasualGame(casualGame)">
+                    <accordion-heading>
+                        <div class="btn-group">
+                            <a class="btn btn-primary">操作</a>
+                            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li ng-click="editCurrentCasualGame(casualGame, $event)"><a><i class="icon-pencil"></i> 编辑</a></li>
+                                <li ng-click="deleteCurrentCasualGame(casualGame, $event)"><a><i class="icon-trash"></i> 删除</a></li>
+                            </ul>
+                        </div>
+                        <span class="position"><strong>游戏名称：</strong>{{casualGame.gameName}}</span>
+                        <span class="work-place"><strong>游戏简述：</strong>{{casualGame.additionInfo}}</span>
+                    </accordion-heading>
+                    <div class="online-game-info">
+                        <div class="game-info">
+                            <span><strong>游戏图标</strong>{{casualGame.iconImageUrl}}</span>
+                            <div><img ng-src="{{'../' + casualGame.iconImageUrl}}"></div>
+                        </div>
+                        <div class="description">
+                            <h3>游戏软文：</h3>
+                            <div>{{casualGame.description}}</div>
+                        </div>
+                    </div>
+                </accordion-group>
+            </accordion>
+        </pane>
+
+    </tabs>
+</div>

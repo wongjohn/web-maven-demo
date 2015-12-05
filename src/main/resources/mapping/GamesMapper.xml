@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aly.dao.GamesMapper" >
+  <resultMap id="BaseResultMap" type="com.aly.domain.Games" >
+    <id column="GAME_ID" property="gameId" jdbcType="INTEGER" />
+    <result column="GAME_TYPE" property="gameType" jdbcType="VARCHAR" />
+    <result column="GAME_NAME" property="gameName" jdbcType="VARCHAR" />
+    <result column="ADDITION_INFO" property="additionInfo" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="ICON_IMAGE_URL" property="iconImageUrl" jdbcType="VARCHAR" />
+    <result column="OFFICIAL_WEBSITE_URL" property="officialWebsiteUrl" jdbcType="VARCHAR" />
+    <result column="ERWEIMA_IMAGE_URL" property="erweimaImageUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GAME_ID, GAME_TYPE, GAME_NAME, ADDITION_INFO, DESCRIPTION, ICON_IMAGE_URL, OFFICIAL_WEBSITE_URL, 
+    ERWEIMA_IMAGE_URL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from GAMES
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </select>
+  <select id="getAllGames" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from GAMES
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from GAMES
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aly.domain.Games" useGeneratedKeys="true" keyProperty="gameId">
+    insert into GAMES (GAME_ID, GAME_TYPE, GAME_NAME,
+      ADDITION_INFO, DESCRIPTION, ICON_IMAGE_URL, 
+      OFFICIAL_WEBSITE_URL, ERWEIMA_IMAGE_URL)
+    values (#{gameId,jdbcType=INTEGER}, #{gameType,jdbcType=VARCHAR}, #{gameName,jdbcType=VARCHAR}, 
+      #{additionInfo,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{iconImageUrl,jdbcType=VARCHAR}, 
+      #{officialWebsiteUrl,jdbcType=VARCHAR}, #{erweimaImageUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aly.domain.Games" useGeneratedKeys="true" keyProperty="gameId" >
+    insert into GAMES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gameId != null" >
+        GAME_ID,
+      </if>
+      <if test="gameType != null" >
+        GAME_TYPE,
+      </if>
+      <if test="gameName != null" >
+        GAME_NAME,
+      </if>
+      <if test="additionInfo != null" >
+        ADDITION_INFO,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="iconImageUrl != null" >
+        ICON_IMAGE_URL,
+      </if>
+      <if test="officialWebsiteUrl != null" >
+        OFFICIAL_WEBSITE_URL,
+      </if>
+      <if test="erweimaImageUrl != null" >
+        ERWEIMA_IMAGE_URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gameId != null" >
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="gameType != null" >
+        #{gameType,jdbcType=VARCHAR},
+      </if>
+      <if test="gameName != null" >
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="additionInfo != null" >
+        #{additionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="iconImageUrl != null" >
+        #{iconImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="officialWebsiteUrl != null" >
+        #{officialWebsiteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="erweimaImageUrl != null" >
+        #{erweimaImageUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aly.domain.Games" >
+    update GAMES
+    <set >
+      <if test="gameType != null" >
+        GAME_TYPE = #{gameType,jdbcType=VARCHAR},
+      </if>
+      <if test="gameName != null" >
+        GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="additionInfo != null" >
+        ADDITION_INFO = #{additionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="iconImageUrl != null" >
+        ICON_IMAGE_URL = #{iconImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="officialWebsiteUrl != null" >
+        OFFICIAL_WEBSITE_URL = #{officialWebsiteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="erweimaImageUrl != null" >
+        ERWEIMA_IMAGE_URL = #{erweimaImageUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aly.domain.Games" >
+    update GAMES
+    set GAME_TYPE = #{gameType,jdbcType=VARCHAR},
+      GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      ADDITION_INFO = #{additionInfo,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      ICON_IMAGE_URL = #{iconImageUrl,jdbcType=VARCHAR},
+      OFFICIAL_WEBSITE_URL = #{officialWebsiteUrl,jdbcType=VARCHAR},
+      ERWEIMA_IMAGE_URL = #{erweimaImageUrl,jdbcType=VARCHAR}
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </update>
+</mapper>

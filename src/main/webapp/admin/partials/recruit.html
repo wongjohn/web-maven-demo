@@ -1,0 +1,52 @@
+<div class="recruit">
+    <h2 class="app-title">
+        <span class="title-name">
+            <span class="name">人事招聘</span>
+        </span>
+        <span class="title-description"><strong>官网“加入我们”页面展示的人事招聘信息</strong></span>
+    </h2>
+    <tabs>
+        <!-- 人事招聘 -->
+        <pane heading="人事招聘">
+            <header class="title">
+                <h3 class="title">人事招聘</h3>
+                <div class="operations">
+                    <button class="btn btn-primary btn-large" ng-click="createNewRecruit()">创建招聘信息</button>
+                </div>
+            </header>
+            <!-- 所有需要编辑的记录 -->
+            <accordion close-others="true">
+                <accordion-group ng-repeat="job in allJobs" ng-class="{'selected' : selectedJob == job}" ng-click="selectCurrentJob(job)">
+                    <accordion-heading>
+                        <div class="btn-group">
+                            <a class="btn btn-primary">操作</a>
+                            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li ng-click="editCurrentJob(job, $event)"><a><i class="icon-pencil"></i> 编辑</a></li>
+                                <li ng-click="deleteCurrentJob(job, $event)"><a><i class="icon-trash"></i> 删除</a></li>
+                            </ul>
+                        </div>
+                        <span class="position"><strong>岗位名称：</strong>{{job.recruitPosition}}</span>
+                        <span class="work-place"><strong>工作地点：</strong>{{job.workPlace}}</span>
+                        <span class="work-property"><strong>工作性质：</strong>{{job.workProperty}}</span>
+                        <span class="recruit-num"><strong>招聘人数：</strong>{{job.recruitNum}}</span>
+                    </accordion-heading>
+                    <div class="job-info">
+                        <div class="responsibilities">
+                            <h3>岗位职责</h3>
+                            <div markdown="{{job.responsibilities}}"></div>
+                        </div>
+                        <div class="requirements">
+                            <h3>任职资格</h3>
+                            <div markdown="{{job.requirements}}"></div>
+                        </div>
+                        <div class="others">
+                            <h3>其他</h3>
+                            <div markdown="{{job.others}}"></div>
+                        </div>
+                    </div>
+                </accordion-group>
+            </accordion>
+        </pane>
+    </tabs>
+</div>
