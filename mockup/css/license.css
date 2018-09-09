@@ -1,0 +1,41 @@
+@charset "utf-8";
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+h2 {
+	font: 24px/50px 'microsoft yahei';
+	color: #666;
+}
+
+.wrap {
+	width: 910px;
+	margin: 0 auto;
+}
+
+.license {
+	width: 900px;
+	height: 675px;
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+
+.foot {
+	width: 900px;
+	margin: 0 auto;
+	margin-top:30px;
+	text-align:center;
+}
+.foot a {
+	color:#000;
+	font-size:14px;
+	font-family:'microsoft yahei';
+	text-decoration:none;
+}
+
+.foot p {
+	color:#000;
+	font-size:14px;
+	font-family:'microsoft yahei';
+}
